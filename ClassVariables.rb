@@ -1,3 +1,5 @@
+# This is a class
+
 class States   
    @@no_of_states=0   
    def initialize(name)   

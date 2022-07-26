@@ -9,6 +9,10 @@ class School
 	def display()
 		puts("the id is #{@student_id} and name is #{@student_name} and address is #{@student_addr}");
   end
+
+  def 
+  	
+  end
 end
 
 stud1 = School.new('1', "sheetal", "124, AB road");
