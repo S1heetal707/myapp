@@ -16,7 +16,7 @@ def display
     main_menu
   else
     bad_pin
-  end
+  end-
 end
 
 def main_menu
