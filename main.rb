@@ -1,15 +1,15 @@
 $LOAD_PATH << '.'
 require 'csv'
 require "rubytask"
-# require "login"
+require "login"
 include Register
-# include Login
+include Login
 
 account = Register::CreateAccount.new()
 account.display
 
 log_obj = Login::LoginAccount.new
-log_obj.signin
+log_obj.login
 
 # login_account = Login::LoginAccount.new()
 # login_account.signin

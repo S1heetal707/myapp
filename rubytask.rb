@@ -8,37 +8,43 @@ module Register
   class CreateAccount
 
     def username
-    	p 'Enter your name :'
-      @usr_name = gets.chomp().to_s
-      valid = /\A[a-zA-Z0-9]+\z/
-      if(@usr_name =~ valid)
-    		p 'username is valid'
-    	else
-    		p 'Invalid username'
-    	end
+      while 1
+      	p 'Enter your name :'
+        @usr_name = gets.chomp().to_s
+        valid = /\A[a-zA-Z0-9]+\z/
+        if !(@usr_name =~ valid).nil?
+      		return @usr_name
+      	else
+      		puts 'username is valid try again'
+      	end
+      end
     end
 
     def useremail
-    	p 'Enter the email'
-    	@usr_email = gets.chomp
-    	valid = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+      while 1
+      	p 'Enter the email'
+      	@usr_email = gets.chomp
+      	valid = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-    	if(@usr_email =~ valid)
-    		p 'email is valid'
-    	else
-    		p 'Invalid email'
-    	end
+      	if !(@usr_email =~ valid).nil?
+      		return @usr_email
+      	else
+      		puts 'email is valid try again'
+      	end
+      end
     end
 
     def userphone
-    	p 'Enter your phone number'
-    	@usr_phone = gets.chomp
+      while 1
+      	p 'Enter your phone number'
+      	@usr_phone = gets.chomp
 
-    	if(@usr_phone= ~/\b^([0-9]{10})$\b/)
-    		p 'Valid phone number'
-    	else
-    		p 'Invalid phone number'
-    	end
+      	if !(@usr_phone= ~/\b^([0-9]{10})$\b/).nil?
+      		return @usr_phone
+      	else
+      		p 'Invalid phone number , try again'
+      	end
+      end
     end
 
     def user_address
@@ -97,7 +103,7 @@ module Register
     	puts ("Your account number is :"  + @account_num.to_s)
     	# MainFile.csv_file
       headers = %w{name email phone address pan_number account_number}
-      CSV.open("my_ask.csv", "a+") do |row| #if csv<1
+      CSV.foreach("my_ask.csv") do |row| #if csv<1
         row << headers
         row << [@usr_name, @usr_email, @usr_phone, @usr_addr,@usr_pan, @account_num]
       end

@@ -1,34 +1,57 @@
 $LOAD_PATH << '.'
-# require './function'
 require 'csv'
 require "rubytask"
 require 'byebug'
 
 
-
-obj = Register::CreateAccount.new
-
-@input_username = obj.username
-@input_email = obj.useremail
-
 module Login
 	class LoginAccount   #< CreateAccount'
-		def signin
-			CSV.foreach('my_ask.csv', headers: true) do |row|
-				if row['name'] == @input_username && row['email'] == @input_email
-					puts "login successfully"
-				else 
-					puts "login failed"
-					puts signin
-        end
-      end  
-    end
+  	def login
+			def signin(user_name, email)
+				is_login = false
+				CSV.foreach('my_ask.csv') do |row|
+	        if row[0] == user_name && row[1] == email
+						is_login = true
+						break
+	        end
+	      end  
+	      is_login
+	    end
+    
+	    while 1
+				puts
+				input_username = obj.username
+				input_email = obj.useremail
+				if log_obj.signin(input_username, input_email)
+					puts "success"
+					break
+				else
+					puts "login failed ! please try again"
+					puts
+				end
+      	signin(input_username,input_email)
+			end
+  	end
   end
 end
 
+obj = Register::CreateAccount.new
+# log_obj = Login::LoginAccount.new()
 
-log_obj = Login::LoginAccount.new()
-log_obj.signin
+# while 1
+# 	puts
+# 	input_username = obj.username
+# 	input_email = obj.useremail
+# 	if log_obj.signin(input_username, input_email)
+# 		puts "success"
+# 		break
+# 	else
+# 		puts "login failed ! please try again"
+# 		puts
+# 	end
+
+# end
+
 
 
 # login_passed = false
