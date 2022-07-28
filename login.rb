@@ -1,36 +1,62 @@
 $LOAD_PATH << '.'
-require './function'
+# require './function'
 require 'csv'
 require "rubytask"
 require 'byebug'
 
-class LoginAccount   #< CreateAccount
-	include Register
-end
 
 
 obj = Register::CreateAccount.new
 
-obj.username
-obj.useremail
-obj.user_account_num
+@input_username = obj.username
+@input_email = obj.useremail
 
-class Inn
-
-  def signin
-    function = AtmFunction.new
-
-    puts "Account login"
-    puts "Enter username"
-    uname = gets.chomp
-    puts "Enter account number"
-    ac_num = gets.chomp
-    
-
-    function.log_in(user)
+module Login
+	class LoginAccount   #< CreateAccount'
+		def signin
+			CSV.foreach('my_ask.csv', headers: true) do |row|
+				if row['name'] == @input_username && row['email'] == @input_email
+					puts "login successfully"
+				else 
+					puts "login failed"
+					puts signin
+        end
+      end  
+    end
   end
 end
-																																		    # puts 'Enter your username'
+
+
+log_obj = Login::LoginAccount.new()
+log_obj.signin
+
+
+# login_passed = false
+# CSV.foreach('my_ask.csv', headers: true) do |row|
+#   login_passed = row['name'] == input_username && row['email'] == input_email
+#   break if login_passed
+# end
+# login_passed
+
+
+# obj.user_account_num
+
+# class Inn
+
+#   def signin
+#     function = AtmFunction.new
+
+#     puts "Account login"
+#     puts "Enter username"
+#     uname = gets.chomp
+#     puts "Enter account number"
+#     ac_num = gets.chomp
+    
+
+#     function.log_in(user)
+#   end
+# end
+# 																																		    # puts 'Enter your username'
 																																		    # @login_name = gets.chomp
 																																		    # puts 'Enter your email'
 																																		    # @login_email = get.chomp

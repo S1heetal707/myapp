@@ -97,7 +97,7 @@ module Register
     	puts ("Your account number is :"  + @account_num.to_s)
     	# MainFile.csv_file
       headers = %w{name email phone address pan_number account_number}
-      CSV.open("my_ask.csv", "a+") do |row|if csv<1
+      CSV.open("my_ask.csv", "a+") do |row| #if csv<1
         row << headers
         row << [@usr_name, @usr_email, @usr_phone, @usr_addr,@usr_pan, @account_num]
       end
